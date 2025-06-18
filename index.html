@@ -1,69 +1,138 @@
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Delicias Gastronómicas</title>
+  <meta charset="UTF-8">
+  <title>Nuestro Mundo ❤️🖤</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #000;
+      color: #fff;
+    }
+
+    header {
+      background: linear-gradient(90deg, #e91e63, #f50057, #000);
+      padding: 20px;
+      text-align: center;
+    }
+
+    header h1 {
+      font-size: 2.5em;
+      color: white;
+      margin: 0;
+    }
+
+    nav {
+      background-color: #111;
+      padding: 10px;
+      text-align: center;
+    }
+
+    nav a {
+      color: #f50057;
+      margin: 0 15px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: color 0.3s;
+    }
+
+    nav a:hover {
+      color: #ff1744;
+    }
+
+    section {
+      padding: 40px 20px;
+    }
+
+    .section-title {
+      font-size: 2em;
+      margin-bottom: 20px;
+      border-bottom: 2px solid #e91e63;
+      display: inline-block;
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+    }
+
+    .gallery-item {
+      background-color: #1a1a1a;
+      border: 2px solid #f50057;
+      padding: 10px;
+      border-radius: 10px;
+      text-align: center;
+      transition: transform 0.3s;
+    }
+
+    .gallery-item:hover {
+      transform: scale(1.03);
+    }
+
+    .gallery-item img {
+      max-width: 100%;
+      border-radius: 10px;
+    }
+
+    footer {
+      text-align: center;
+      background-color: #111;
+      padding: 20px;
+      color: #888;
+    }
+  </style>
 </head>
 <body>
-    <header>
-        <h1>Delicias Gastronómicas</h1>
-        <h2>by [Nombre de tu amiga]</h2>
-    </header>
 
-    <nav>
-        <ul>
-            <li><a href="#inicio">Inicio</a></li>
-            <li><a href="#platillos">Platillos</a></li>
-            <li><a href="#contacto">Contacto</a></li>
-        </ul>
-    </nav>
+  <header>
+    <h1>❤️ Nuestra Historia: Luis & [Tu Novia] 🖤</h1>
+  </header>
 
-    <section id="inicio">
-        <h2>Bienvenidos</h2>
-        <p>Descubre los sabores auténticos de nuestra cocina tradicional preparada con amor y los mejores ingredientes.</p>
-        <img src="comida.jpg" alt="Platillo principal" width="300">
-    </section>
+  <nav>
+    <a href="#animes">Animes Vistos</a>
+    <a href="#peliculas">Películas Juntos</a>
+    <a href="#momentos">Nuestros Momentos</a>
+  </nav>
 
-    <section id="platillos">
-        <h2>Nuestros Platillos Estrella</h2>
-        
-        <article>
-            <h3>Pasta Alfredo con Camarones</h3>
-            <p>Deliciosa pasta en salsa alfredo casera con camarones frescos.</p>
-            <img src="pasta.jpg" alt="Pasta Alfredo" width="200">
-        </article>
+  <section id="animes">
+    <h2 class="section-title">✨ Animes que Vimos</h2>
+    <div class="gallery">
+      <div class="gallery-item">
+        <img src="https://i.imgur.com/XdW0fSb.jpg" alt="Naruto">
+        <p>Naruto</p>
+      </div>
+      <div class="gallery-item">
+        <img src="https://i.imgur.com/7yUVEb1.jpg" alt="Your Name">
+        <p>Your Name</p>
+      </div>
+      <!-- Puedes seguir agregando -->
+    </div>
+  </section>
 
-        <article>
-            <h3>Risotto de Hongos</h3>
-            <p>Arroz cremoso preparado con una selección de hongos silvestres.</p>
-            <img src="risotto.jpg" alt="Risotto" width="200">
-        </article>
+  <section id="peliculas">
+    <h2 class="section-title">🎬 Películas que Vimos</h2>
+    <div class="gallery">
+      <div class="gallery-item">
+        <img src="https://i.imgur.com/YxVCLrS.jpg" alt="Spiderman">
+        <p>Spider-Man: No Way Home</p>
+      </div>
+      <div class="gallery-item">
+        <img src="https://i.imgur.com/KYz1sWz.jpg" alt="Titanic">
+        <p>Titanic</p>
+      </div>
+    </div>
+  </section>
 
-        <article>
-            <h3>Tiramisú Clásico</h3>
-            <p>Postre italiano tradicional con capas de bizcocho, café y crema de mascarpone.</p>
-            <img src="tiramisu.jpg" alt="Tiramisú" width="200">
-        </article>
-    </section>
+  <section id="momentos">
+    <h2 class="section-title">💖 Nuestros Momentos</h2>
+    <p>Aquí puedes poner frases, recuerdos, fotos juntos o lo que desees compartir.</p>
+  </section>
 
-    <section id="contacto">
-        <h2>Contacto</h2>
-        <p>Para reservaciones o pedidos especiales:</p>
-        <address>
-            <p>Teléfono: <a href="tel:+525512345678">55 1234 5678</a></p>
-            <p>Email: <a href="mailto:delicias@gmail.com">delicias@gmail.com</a></p>
-            <p>Dirección: Calle Sabores #123, Col. Delicias, CDMX</p>
-        </address>
+  <footer>
+    <p>Creado con amor por Luis ❤️ para [Tu Novia] 🌹</p>
+  </footer>
 
-        <h3>Horario de atención:</h3>
-        <p>Lunes a Viernes: 9:00 am - 8:00 pm</p>
-        <p>Sábados: 10:00 am - 6:00 pm</p>
-    </section>
-
-    <footer>
-        <p>&copy; 2023 Delicias Gastronómicas. Todos los derechos reservados.</p>
-    </footer>
 </body>
 </html>
