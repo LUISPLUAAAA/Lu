@@ -2,85 +2,290 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Nuestro Mundo ❤️🖤</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
   <style>
-    body {
+    :root {
+      --primary-color: #e91e63;
+      --secondary-color: #f50057;
+      --dark-color: #111;
+      --light-color: #fff;
+      --bg-color: #000;
+      --card-bg: #1a1a1a;
+    }
+
+    * {
+      box-sizing: border-box;
       margin: 0;
-      font-family: 'Segoe UI', sans-serif;
-      background-color: #000;
-      color: #fff;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: var(--bg-color);
+      color: var(--light-color);
+      line-height: 1.6;
     }
 
     header {
-      background: linear-gradient(90deg, #e91e63, #f50057, #000);
-      padding: 20px;
+      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color), var(--dark-color));
+      padding: 30px 20px;
       text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    header::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('https://i.pinimg.com/originals/4c/1c/9b/4c1c9b0f0e5e5e5e5e5e5e5e5e5e5e5.gif') center/cover;
+      opacity: 0.2;
+      z-index: 0;
     }
 
     header h1 {
       font-size: 2.5em;
       color: white;
       margin: 0;
+      position: relative;
+      z-index: 1;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+      animation: fadeIn 1.5s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
     nav {
-      background-color: #111;
-      padding: 10px;
+      background-color: var(--dark-color);
+      padding: 15px;
       text-align: center;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
     }
 
     nav a {
-      color: #f50057;
+      color: var(--primary-color);
       margin: 0 15px;
       text-decoration: none;
-      font-weight: bold;
-      transition: color 0.3s;
+      font-weight: 600;
+      transition: all 0.3s;
+      padding: 5px 10px;
+      border-radius: 20px;
+      font-size: 1.1em;
     }
 
     nav a:hover {
-      color: #ff1744;
+      color: var(--light-color);
+      background-color: var(--primary-color);
+      transform: translateY(-2px);
     }
 
     section {
-      padding: 40px 20px;
+      padding: 60px 20px;
+      max-width: 1200px;
+      margin: 0 auto;
     }
 
     .section-title {
-      font-size: 2em;
-      margin-bottom: 20px;
-      border-bottom: 2px solid #e91e63;
+      font-size: 2.2em;
+      margin-bottom: 30px;
+      border-bottom: 3px solid var(--primary-color);
       display: inline-block;
+      padding-bottom: 10px;
+      position: relative;
+    }
+
+    .section-title::after {
+      content: "";
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 50%;
+      height: 2px;
+      background-color: var(--secondary-color);
     }
 
     .gallery {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 20px;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
     }
 
     .gallery-item {
-      background-color: #1a1a1a;
-      border: 2px solid #f50057;
-      padding: 10px;
-      border-radius: 10px;
+      background-color: var(--card-bg);
+      border: 2px solid var(--primary-color);
+      padding: 20px;
+      border-radius: 15px;
       text-align: center;
-      transition: transform 0.3s;
+      transition: all 0.4s ease;
+      box-shadow: 0 8px 20px rgba(233, 30, 99, 0.1);
     }
 
     .gallery-item:hover {
-      transform: scale(1.03);
+      transform: translateY(-10px) scale(1.02);
+      box-shadow: 0 12px 25px rgba(233, 30, 99, 0.2);
+      border-color: var(--secondary-color);
     }
 
     .gallery-item img {
-      max-width: 100%;
+      width: 100%;
+      height: 300px;
+      object-fit: cover;
       border-radius: 10px;
+      margin-bottom: 15px;
+      transition: transform 0.3s;
+    }
+
+    .gallery-item:hover img {
+      transform: scale(1.05);
+    }
+
+    .gallery-item h3 {
+      color: var(--primary-color);
+      margin-bottom: 15px;
+      font-size: 1.5em;
+    }
+
+    .gallery-item p {
+      font-size: 1.1em;
+      color: #ddd;
+    }
+
+    /* Estilos para la sección de notas */
+    #notes {
+      background-color: rgba(26, 26, 26, 0.7);
+      border-radius: 15px;
+      padding: 30px;
+      margin-top: 40px;
+    }
+
+    .notes-container {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .note-input {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    #note-text {
+      flex-grow: 1;
+      padding: 15px;
+      border-radius: 10px;
+      border: 2px solid var(--primary-color);
+      background-color: var(--dark-color);
+      color: white;
+      font-family: inherit;
+      font-size: 1em;
+      resize: none;
+      min-height: 100px;
+    }
+
+    #note-text:focus {
+      outline: none;
+      border-color: var(--secondary-color);
+      box-shadow: 0 0 10px rgba(233, 30, 99, 0.5);
+    }
+
+    #save-note {
+      background-color: var(--primary-color);
+      color: white;
+      border: none;
+      padding: 10px 25px;
+      border-radius: 25px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: all 0.3s;
+      align-self: flex-start;
+    }
+
+    #save-note:hover {
+      background-color: var(--secondary-color);
+      transform: translateY(-2px);
+    }
+
+    .saved-notes {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 20px;
+    }
+
+    .note {
+      background-color: rgba(245, 0, 87, 0.1);
+      border-left: 4px solid var(--primary-color);
+      padding: 15px;
+      border-radius: 8px;
+      position: relative;
+      animation: fadeIn 0.5s ease-out;
+    }
+
+    .note-date {
+      font-size: 0.8em;
+      color: #aaa;
+      margin-bottom: 10px;
+    }
+
+    .delete-note {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: none;
+      border: none;
+      color: #ff5252;
+      cursor: pointer;
+      font-size: 1.2em;
     }
 
     footer {
       text-align: center;
-      background-color: #111;
-      padding: 20px;
+      background-color: var(--dark-color);
+      padding: 30px;
       color: #888;
+      margin-top: 60px;
+      font-size: 1.1em;
+    }
+
+    footer p {
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+      100% { transform: scale(1); }
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      header h1 {
+        font-size: 2em;
+      }
+      
+      nav a {
+        display: block;
+        margin: 10px 0;
+      }
+      
+      .gallery {
+        grid-template-columns: 1fr;
+      }
+      
+      .note-input {
+        flex-direction: column;
+      }
     }
   </style>
 </head>
@@ -93,56 +298,155 @@
   <nav>
     <a href="#animes">Animes Vistos</a>
     <a href="#peliculas">Películas Juntos</a>
-   <a href="#you">You</a>
-</nav>
+    <a href="#you">You</a>
+    <a href="#notes">Nuestras Notas</a>
+  </nav>
 
-<section id="animes">
-  <h2 class="section-title">✨ Animes que Vimos</h2>
-  <div class="gallery">
-    <div class="gallery-item">
-      <img src="https://th.bing.com/th/id/OIP.d8rld2hbldotH17sfDB3xwAAAA?r=0&rs=1&pid=ImgDetMain" alt="Violet Evergarden">
-      <p>Violet Evergarden</p>
+  <section id="animes">
+    <h2 class="section-title">✨ Animes que Vimos</h2>
+    <div class="gallery">
+      <div class="gallery-item">
+        <img src="https://th.bing.com/th/id/OIP.d8rld2hbldotH17sfDB3xwAAAA?r=0&rs=1&pid=ImgDetMain" alt="Violet Evergarden">
+        <h3>Violet Evergarden</h3>
+        <p>Una historia conmovedora sobre el amor y la comunicación</p>
+      </div>
+      <!-- Puedes agregar más animes aquí -->
     </div>
-  
-  </div>
-</section>
+  </section>
 
-<section id="peliculas">
-  <h2 class="section-title">🎬 Películas que Vimos</h2>
-  <div class="gallery">
-    <div class="gallery-item">
-      <img src="https://m.media-amazon.com/images/I/719QuSqLbQL._SL1500_.jpg" alt="A Silent Voice
-      <p>A Silent Voice</p>
+  <section id="peliculas">
+    <h2 class="section-title">🎬 Películas que Vimos</h2>
+    <div class="gallery">
+      <div class="gallery-item">
+        <img src="https://m.media-amazon.com/images/I/719QuSqLbQL._SL1500_.jpg" alt="A Silent Voice">
+        <h3>A Silent Voice</h3>
+        <p>Una película sobre redención y conexión humana</p>
+      </div>
+      <div class="gallery-item">
+        <img src="https://i.imgur.com/KYz1sWz.jpg" alt="Titanic">
+        <h3>Próxima película</h3>
+        <p>¿Cuál será nuestra próxima aventura cinematográfica?</p>
+      </div>
     </div>
-    <div class="gallery-item">
-      <img src="https://i.imgur.com/KYz1sWz.jpg" alt="Titanic">
-      <p>Cual sera la proxima?</p>
-    </div>
-  </div>
-</section>
+  </section>
 
-<section id="you">
-  <h2 class="section-title">💞 You</h2>
-  <div class="gallery">
-    <div class="gallery-item">
-      <h3>Luis 🖤</h3>
-      <p>• Cumpleaños: 3 de Diciembre <br>
-         • Le encanta el ramen 🍜<br>
-         • Ama a Ali y Lu 🧸<br>
-         • Color favorito: Negro con rojo 🔴<br>
-         • Frase: "Power give me more power I Will survive in Exile to protect her"</p>
+  <section id="you">
+    <h2 class="section-title">💞 You</h2>
+    <div class="gallery">
+      <div class="gallery-item">
+        <h3>Luis 🖤</h3>
+        <p>• Cumpleaños: 3 de Diciembre <br>
+           • Le encanta el ramen 🍜<br>
+           • Ama a Ali y Lu 🧸<br>
+           • Color favorito: Negro con rojo 🔴<br>
+           • Frase: "Power give me more power I Will survive in Exile to protect her"</p>
+      </div>
+      <div class="gallery-item">
+        <h3>Aly 🌹</h3>
+        <p>• Cumpleaños: 1 de junio<br>
+           • Le encanta las galletas de amor sabor a leche <br>
+           • Ama a Lu 🧸<br>
+           • Color favorito: Negro con rosa 💗<br>
+           • Frase: "Resiliencia"</p>
+      </div>
     </div>
-    <div class="gallery-item">
-      <h3>Aly 🌹</h3>
-      <p>• Cumpleaños: 1 de junio<br>
-         • Le encanta las galletas de amor sabor a leche <br>
-         • Ama a Lu 🧸<br>
-         • Color favorito: Negro con rosa 💗<br>
-         • Frase: "Resiliencia"</p>
-    </div>
-  </div>
-</section>
+  </section>
 
-<footer>
-  <p>Cuando estés mal, búscame ❤️</p>
-</footer>
+  <section id="notes">
+    <h2 class="section-title">📝 Nuestras Notas</h2>
+    <div class="notes-container">
+      <div class="note-input">
+        <textarea id="note-text" placeholder="Escribe aquí una nota especial para guardar en nuestro mundo..."></textarea>
+        <button id="save-note">Guardar Nota</button>
+      </div>
+      <div class="saved-notes" id="saved-notes">
+        <!-- Las notas guardadas aparecerán aquí -->
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>Cuando estés mal, búscame ❤️</p>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Cargar notas guardadas al iniciar
+      loadNotes();
+      
+      // Manejar el guardado de notas
+      document.getElementById('save-note').addEventListener('click', saveNote);
+      
+      // También guardar al presionar Ctrl+Enter
+      document.getElementById('note-text').addEventListener('keydown', function(e) {
+        if (e.ctrlKey && e.key === 'Enter') {
+          saveNote();
+        }
+      });
+    });
+    
+    function saveNote() {
+      const noteText = document.getElementById('note-text').value.trim();
+      if (noteText === '') return;
+      
+      // Crear objeto de nota
+      const note = {
+        text: noteText,
+        date: new Date().toLocaleString()
+      };
+      
+      // Obtener notas existentes o crear array vacío
+      let notes = JSON.parse(localStorage.getItem('luisAlyNotes')) || [];
+      
+      // Agregar nueva nota
+      notes.unshift(note); // Agregar al inicio para mostrar las más recientes primero
+      
+      // Guardar en localStorage
+      localStorage.setItem('luisAlyNotes', JSON.stringify(notes));
+      
+      // Limpiar el textarea
+      document.getElementById('note-text').value = '';
+      
+      // Recargar las notas
+      loadNotes();
+    }
+    
+    function loadNotes() {
+      const notesContainer = document.getElementById('saved-notes');
+      notesContainer.innerHTML = '';
+      
+      const notes = JSON.parse(localStorage.getItem('luisAlyNotes')) || [];
+      
+      if (notes.length === 0) {
+        notesContainer.innerHTML = '<p style="grid-column: 1 / -1; text-align: center; color: #aaa;">Aún no hay notas guardadas. ¡Escribe la primera!</p>';
+        return;
+      }
+      
+      notes.forEach((note, index) => {
+        const noteElement = document.createElement('div');
+        noteElement.className = 'note';
+        noteElement.innerHTML = `
+          <span class="note-date">${note.date}</span>
+          <p>${note.text}</p>
+          <button class="delete-note" data-index="${index}">×</button>
+        `;
+        notesContainer.appendChild(noteElement);
+      });
+      
+      // Agregar event listeners a los botones de eliminar
+      document.querySelectorAll('.delete-note').forEach(button => {
+        button.addEventListener('click', function() {
+          deleteNote(parseInt(this.getAttribute('data-index')));
+        });
+      });
+    }
+    
+    function deleteNote(index) {
+      let notes = JSON.parse(localStorage.getItem('luisAlyNotes')) || [];
+      notes.splice(index, 1);
+      localStorage.setItem('luisAlyNotes', JSON.stringify(notes));
+      loadNotes();
+    }
+  </script>
+</body>
+</html>
