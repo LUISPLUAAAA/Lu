@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AviJetZ - Búsqueda Rápida</title>
+    <title>AviJetZ - Búsqueda Privada</title>
     <style>
         body {
             font-family: 'Segoe UI', Arial, sans-serif;
@@ -75,11 +75,11 @@
     <div class="container">
         <div class="logo">AviJetZ</div>
         <div class="search-box">
-            <input type="text" id="search-input" placeholder="Buscar en AviJetZ..." autofocus>
+            <input type="text" id="search-input" placeholder="Buscar de forma privada..." autofocus>
             <button id="search-button">Buscar</button>
         </div>
         <div class="info">
-            Búsqueda rápida y directa
+            No guardamos tu historial de búsqueda. 🔒
         </div>
     </div>
 
@@ -94,19 +94,21 @@
             }
         });
 
-        // Buscar al hacer clic en el botón
+        // Buscar al hacer clic
         searchButton.addEventListener('click', search);
 
         function search() {
             const query = searchInput.value.trim();
             if (query) {
-                // Aquí podrías integrar una API de búsqueda personalizada
-                // Por ahora, redirige a DuckDuckGo como ejemplo
-                window.open(`https://duckduckgo.com/?q=${encodeURIComponent(query)}`, '_blank');
+                // Redirige SIN guardar en el historial (usando location.replace)
+                // y evita el referer con rel="noreferrer"
+                const newWindow = window.open();
+                newWindow.opener = null; // Evita que la nueva ventana tenga acceso al opener
+                newWindow.location.replace(`https://duckduckgo.com/?q=${encodeURIComponent(query)}`);
             }
         }
 
-        // Enfocar el campo de búsqueda al cargar la página
+        // Enfocar automáticamente el buscador
         window.onload = function() {
             searchInput.focus();
         };
