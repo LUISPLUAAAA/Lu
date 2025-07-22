@@ -122,27 +122,16 @@
         const searchButton = document.getElementById('search-button');
         const torButton = document.getElementById('tor-button');
 
-        // Buscar de forma anónima
+        // Buscar de forma anónima en la misma pestaña
         function searchAnonymously() {
             const query = searchInput.value.trim();
             if (!query) return;
 
-            // 1. Abre en ventana privada (si el navegador lo permite)
-            const newWindow = window.open('', '_blank', 'noopener,noreferrer');
-            if (!newWindow) {
-                // Fallback: Redirige directamente sin historial
-                window.location.replace(`https://duckduckgo.com/?q=${encodeURIComponent(query)}&kp=-1`);
-                return;
-            }
-
-            // 2. Elimina el opener para evitar fugas
-            newWindow.opener = null;
-
-            // 3. Carga DuckDuckGo con parámetros de máxima privacidad
-            newWindow.location.href = `https://duckduckgo.com/?q=${encodeURIComponent(query)}&kp=-1&kae=-1&kax=-1`;
+            // Usamos location.replace para evitar que quede en el historial
+            window.location.replace(`https://duckduckgo.com/?q=${encodeURIComponent(query)}&kp=-1&kae=-1&kax=-1`);
         }
 
-        // Buscar en Tor
+        // Buscar en Tor en la misma pestaña
         function searchOnTor() {
             const query = searchInput.value.trim();
             if (!query) return;
@@ -150,14 +139,8 @@
             // Usa el enlace oficial de DuckDuckGo en Tor
             const torURL = `https://duckduckgogg42xjoc72x3sjasowoarfbgcmvfimaftt6twagswzczad.onion/?q=${encodeURIComponent(query)}`;
             
-            // Intenta abrir en ventana nueva
-            const newWindow = window.open('', '_blank', 'noopener,noreferrer');
-            if (newWindow) {
-                newWindow.opener = null;
-                newWindow.location.href = torURL;
-            } else {
-                alert("Para usar Tor, instala el navegador Tor Browser.");
-            }
+            // Redirige en la misma pestaña
+            window.location.replace(torURL);
         }
 
         // Eventos
