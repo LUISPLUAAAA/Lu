@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Buscar con DuckDuckGo</title>
+    <title>AviJetZ - Búsqueda Rápida</title>
     <style>
         body {
             font-family: 'Segoe UI', Arial, sans-serif;
-            background-color: #f8f9fa;
+            background-color: #f0f4f8;
             margin: 0;
             padding: 0;
             display: flex;
@@ -15,7 +15,7 @@
             align-items: center;
             justify-content: center;
             height: 100vh;
-            color: #333;
+            color: #1a1a1a;
         }
         .container {
             width: 100%;
@@ -24,10 +24,11 @@
             text-align: center;
         }
         .logo {
-            font-size: 32px;
+            font-size: 36px;
             font-weight: bold;
-            margin-bottom: 30px;
-            color: #DE5833;
+            margin-bottom: 20px;
+            color: #0066ff;
+            letter-spacing: -1px;
         }
         .search-box {
             width: 100%;
@@ -37,22 +38,22 @@
             width: 100%;
             padding: 14px 20px;
             font-size: 16px;
-            border: 2px solid #ddd;
+            border: 2px solid #d1d5db;
             border-radius: 30px;
             outline: none;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
-            transition: all 0.3s;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
         }
         #search-input:focus {
-            border-color: #DE5833;
-            box-shadow: 0 2px 15px rgba(222, 88, 51, 0.2);
+            border-color: #0066ff;
+            box-shadow: 0 4px 16px rgba(0, 102, 255, 0.2);
         }
         #search-button {
             position: absolute;
             right: 8px;
             top: 8px;
-            padding: 8px 16px;
-            background-color: #DE5833;
+            padding: 8px 18px;
+            background-color: #0066ff;
             color: white;
             border: none;
             border-radius: 20px;
@@ -61,10 +62,10 @@
             transition: background-color 0.2s;
         }
         #search-button:hover {
-            background-color: #c04a2a;
+            background-color: #0052cc;
         }
         .info {
-            margin-top: 30px;
+            margin-top: 20px;
             font-size: 14px;
             color: #666;
         }
@@ -72,13 +73,13 @@
 </head>
 <body>
     <div class="container">
-        <div class="logo">DuckSearch</div>
+        <div class="logo">AviJetZ</div>
         <div class="search-box">
-            <input type="text" id="search-input" placeholder="Buscar con DuckDuckGo..." autofocus>
+            <input type="text" id="search-input" placeholder="Buscar en AviJetZ..." autofocus>
             <button id="search-button">Buscar</button>
         </div>
         <div class="info">
-            Búsquedas rápidas y privadas con DuckDuckGo
+            Búsqueda rápida y directa
         </div>
     </div>
 
@@ -99,6 +100,8 @@
         function search() {
             const query = searchInput.value.trim();
             if (query) {
+                // Aquí podrías integrar una API de búsqueda personalizada
+                // Por ahora, redirige a DuckDuckGo como ejemplo
                 window.open(`https://duckduckgo.com/?q=${encodeURIComponent(query)}`, '_blank');
             }
         }
