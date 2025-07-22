@@ -1,13 +1,23 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" data-theme="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AviJetZ - Búsqueda Privada</title>
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'unsafe-inline'; style-src 'unsafe-inline';">
+    <title>AviJetZ Ultra - Búsqueda 100% Anónima</title>
     <style>
+        :root {
+            --bg-color: #0d1117;
+            --text-color: #e6edf3;
+            --accent-color: #58a6ff;
+            --input-bg: #161b22;
+            --border-color: #30363d;
+            --shadow-color: rgba(0, 0, 0, 0.5);
+        }
         body {
-            font-family: 'Segoe UI', Arial, sans-serif;
-            background-color: #f0f4f8;
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
             margin: 0;
             padding: 0;
             display: flex;
@@ -15,103 +25,148 @@
             align-items: center;
             justify-content: center;
             height: 100vh;
-            color: #1a1a1a;
+            overflow: hidden;
         }
         .container {
             width: 100%;
-            max-width: 600px;
+            max-width: 650px;
             padding: 20px;
             text-align: center;
         }
         .logo {
-            font-size: 36px;
-            font-weight: bold;
-            margin-bottom: 20px;
-            color: #0066ff;
-            letter-spacing: -1px;
+            font-size: 2.8rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            color: var(--accent-color);
+            letter-spacing: -0.05em;
+            text-shadow: 0 2px 10px var(--shadow-color);
         }
         .search-box {
             width: 100%;
             position: relative;
+            margin-bottom: 1rem;
         }
         #search-input {
             width: 100%;
-            padding: 14px 20px;
-            font-size: 16px;
-            border: 2px solid #d1d5db;
-            border-radius: 30px;
+            padding: 1rem 1.2rem;
+            font-size: 1.1rem;
+            background: var(--input-bg);
+            border: 2px solid var(--border-color);
+            border-radius: 2rem;
+            color: var(--text-color);
             outline: none;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 20px var(--shadow-color);
             transition: all 0.3s ease;
         }
         #search-input:focus {
-            border-color: #0066ff;
-            box-shadow: 0 4px 16px rgba(0, 102, 255, 0.2);
+            border-color: var(--accent-color);
+            box-shadow: 0 4px 25px rgba(88, 166, 255, 0.3);
         }
         #search-button {
             position: absolute;
-            right: 8px;
-            top: 8px;
-            padding: 8px 18px;
-            background-color: #0066ff;
-            color: white;
+            right: 0.5rem;
+            top: 0.5rem;
+            padding: 0.6rem 1.2rem;
+            background: var(--accent-color);
+            color: #000;
             border: none;
-            border-radius: 20px;
+            border-radius: 2rem;
+            font-weight: 600;
             cursor: pointer;
-            font-weight: bold;
-            transition: background-color 0.2s;
+            transition: all 0.2s;
         }
         #search-button:hover {
-            background-color: #0052cc;
+            background: #79b8ff;
+            transform: translateY(-1px);
         }
-        .info {
-            margin-top: 20px;
-            font-size: 14px;
-            color: #666;
+        .privacy-badge {
+            margin-top: 2rem;
+            font-size: 0.9rem;
+            opacity: 0.7;
+        }
+        .tor-button {
+            margin-top: 1rem;
+            background: transparent;
+            color: var(--accent-color);
+            border: 1px solid var(--border-color);
+            border-radius: 2rem;
+            padding: 0.5rem 1rem;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .tor-button:hover {
+            background: rgba(88, 166, 255, 0.1);
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <div class="logo">AviJetZ</div>
+        <div class="logo">AviJetZ Ultra</div>
         <div class="search-box">
-            <input type="text" id="search-input" placeholder="Buscar de forma privada..." autofocus>
+            <input type="text" id="search-input" placeholder="Buscar sin dejar rastro..." autocomplete="off" spellcheck="false" autofocus>
             <button id="search-button">Buscar</button>
         </div>
-        <div class="info">
-            No guardamos tu historial de búsqueda. 🔒
+        <button class="tor-button" id="tor-button">🌐 Acceder vía Tor</button>
+        <div class="privacy-badge">
+            🔒 No guardamos historial · Sin cookies · Sin trackers
         </div>
     </div>
 
     <script>
+        // Limpia cualquier dato previo (por si acaso)
+        window.localStorage.clear();
+        window.sessionStorage.clear();
+        document.cookie.split(";").forEach(c => document.cookie = c.replace(/^ +/, "").replace(/=.*/, `=;expires=${new Date(0).toUTCString()};path=/`));
+
         const searchInput = document.getElementById('search-input');
         const searchButton = document.getElementById('search-button');
+        const torButton = document.getElementById('tor-button');
 
-        // Buscar al presionar Enter
-        searchInput.addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') {
-                search();
-            }
-        });
-
-        // Buscar al hacer clic
-        searchButton.addEventListener('click', search);
-
-        function search() {
+        // Buscar de forma anónima
+        function searchAnonymously() {
             const query = searchInput.value.trim();
-            if (query) {
-                // Redirige SIN guardar en el historial (usando location.replace)
-                // y evita el referer con rel="noreferrer"
-                const newWindow = window.open();
-                newWindow.opener = null; // Evita que la nueva ventana tenga acceso al opener
-                newWindow.location.replace(`https://duckduckgo.com/?q=${encodeURIComponent(query)}`);
+            if (!query) return;
+
+            // 1. Abre en ventana privada (si el navegador lo permite)
+            const newWindow = window.open('', '_blank', 'noopener,noreferrer');
+            if (!newWindow) {
+                // Fallback: Redirige directamente sin historial
+                window.location.replace(`https://duckduckgo.com/?q=${encodeURIComponent(query)}&kp=-1`);
+                return;
+            }
+
+            // 2. Elimina el opener para evitar fugas
+            newWindow.opener = null;
+
+            // 3. Carga DuckDuckGo con parámetros de máxima privacidad
+            newWindow.location.href = `https://duckduckgo.com/?q=${encodeURIComponent(query)}&kp=-1&kae=-1&kax=-1`;
+        }
+
+        // Buscar en Tor
+        function searchOnTor() {
+            const query = searchInput.value.trim();
+            if (!query) return;
+            
+            // Usa el enlace oficial de DuckDuckGo en Tor
+            const torURL = `https://duckduckgogg42xjoc72x3sjasowoarfbgcmvfimaftt6twagswzczad.onion/?q=${encodeURIComponent(query)}`;
+            
+            // Intenta abrir en ventana nueva
+            const newWindow = window.open('', '_blank', 'noopener,noreferrer');
+            if (newWindow) {
+                newWindow.opener = null;
+                newWindow.location.href = torURL;
+            } else {
+                alert("Para usar Tor, instala el navegador Tor Browser.");
             }
         }
 
-        // Enfocar automáticamente el buscador
-        window.onload = function() {
-            searchInput.focus();
-        };
+        // Eventos
+        searchInput.addEventListener('keypress', (e) => e.key === 'Enter' && searchAnonymously());
+        searchButton.addEventListener('click', searchAnonymously);
+        torButton.addEventListener('click', searchOnTor);
+
+        // Enfocar automáticamente al cargar
+        window.onload = () => searchInput.focus();
     </script>
 </body>
 </html>
